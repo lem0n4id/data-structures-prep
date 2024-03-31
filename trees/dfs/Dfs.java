@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Node {
+class Node {
     int val;
     Node left;
     Node right;
@@ -11,18 +11,25 @@ public class Node {
 class Dfs {
     
     public static void main(String[] args) {
+
+        List<Integer> res = new ArrayList<>();
+
         Node root = new Node(1);
         root.right = new Node(2);
         root.right.left = new Node(3);
 
-        dfs(root);
+        dfs(root,res);
+        for (int i:res)
+            System.out.print(i+" ");
+        
+        System.out.println();
         return;
     }
 
-    public static void dfs(Node node) {
+    public static void dfs(Node node, List<Integer> res) {
         if (node == null) return;
-        dfs(node.left);
-        System.out.print(node.val+" ");
-        dfs(node.right);
+        dfs(node.left, res);
+        res.add(node.val);
+        dfs(node.right, res);
     }
 }
